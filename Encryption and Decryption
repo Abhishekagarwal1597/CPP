@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string alphabets ("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    string key ("XZNLWEBGJHQDYVTKFUOMPCIASR xznlwebgjhqdyvtkfuompciasr");
+
+  // char value;
+
+
+   string input;
+   char output;
+   string encrupted_msg;
+   string decrupted_msg;
+   //char value;
+   cout<<"input the string\n";
+     getline(cin,input);
+     cout<<"encrupted data:";
+   for(auto n:input)
+   {
+        size_t found = alphabets.find(n);
+    if (found != string::npos)
+        //cout << "First occurrence is " << found << endl;
+   //postion=find(value);
+
+    output=key.at(found);
+    encrupted_msg +=output;
+   }
+   cout<<encrupted_msg<<endl;
+   
+   
+cout<<"decrupted data: ";
+for(char c:encrupted_msg)
+{
+    size_t found=encrupted_msg.find(c);
+    if(found != string::npos)
+    output=alphabets.at(found);
+    decrupted_msg +=output;
+}
+cout<<decrupted_msg<<endl;
+    return 0;
+}
