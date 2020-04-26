@@ -1,0 +1,101 @@
+int main() {
+    int n;
+    cin >> n;
+    vector <int> a(n);
+    for (int i=0;i<n;i++) cin >> a[i];
+    
+    int q;
+    cin >> q;
+    while (q--) {
+        int x;
+        cin >> x;
+        auto it=lower_bound(a.begin(),a.end(),x);
+        cout << (*it==x?"Yes ":"No ") << it-a.begin()+1 << endl;
+    }
+    
+    return 0;
+}
+///////////////////////////////////////////////////////////////////////
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+using namespace std;
+
+
+int main() {
+    int size; cin >> size;
+
+    vector<int> vec; vec.reserve(size);
+    copy_n(istream_iterator<int>(cin), size, back_inserter(vec));
+
+    int queryCount; cin >> queryCount; 
+
+    vector<int> queries; queries.reserve(queryCount);
+    copy_n(istream_iterator<int>(cin), queryCount, back_inserter(queries));
+    
+    for(auto& q : queries)
+    {
+        auto it = lower_bound(begin(vec), end(vec), q);        
+        cout << (*it == q ? "Yes " : "No ") << distance(begin(vec), it) + 1 << endl;
+    }
+
+    return 0;
+}
+///////////////////////////////////////////////////////////////////////
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+   /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+   int m, num;
+   cin >> m;
+   vector<int> v;
+   for (int i=0; i<m; i++){
+       cin >> num;
+       v.push_back(num);
+   }
+   int n, val;
+   cin >> n;
+   for (int i=0; i<n; i++){
+       cin >> val;
+       vector<int>::iterator low = lower_bound(v.begin(), v.end(), val);
+       if (v[low - v.begin()] == val)
+           cout << "Yes " << (low - v.begin()+1) << endl;
+       else
+           cout << "No " << (low - v.begin()+1) << endl;
+   }
+   return 0;
+}
+//////////////////Below one is my code which is slow compared to others//////////////////
+/*
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT  
+int a,no,querry,p;
+vector<int> arr;
+  std::vector<int>::iterator q,low1;
+    cin >> no;
+    while(no > 0){
+        cin>>a;
+        arr.push_back(a);
+        no--;
+    } 
+    cin >> querry;
+    while(querry > 0){
+           cin >> p;
+       q = find(arr.begin(), arr.end(), p);
+        if (q != arr.end())
+        cout <<"Yes"<<" "<<q-arr.begin()+1 <<endl;
+         else{
+         low1 = lower_bound(arr.begin(), arr.end(), p); 
+        cout<<"No"<<" "<<low1-arr.begin()+1<<endl;
+        }
+        querry--;
+    }
+    return 0;
+}
+*/
